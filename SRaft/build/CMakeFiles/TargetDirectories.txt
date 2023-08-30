@@ -1,3 +1,0 @@
-/home/syy/dev/SRaft/build/CMakeFiles/sraft_test.dir
-/home/syy/dev/SRaft/build/CMakeFiles/edit_cache.dir
-/home/syy/dev/SRaft/build/CMakeFiles/rebuild_cache.dir

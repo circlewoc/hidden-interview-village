@@ -1,2 +1,0 @@
-# Hashes of file build rules.
-3b955fdd494ff9acea8d71a86b2dc5a9 raft_messages.pb.h
