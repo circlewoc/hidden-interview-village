@@ -2,6 +2,7 @@
 #include "noncopyable.h"
 #include <string>
 #include<cstdio>
+// #define MUDEBUG
 
 #define LOG_INFO(logFormat,...)\
     do\
@@ -41,7 +42,7 @@
             Logger& logger = Logger::instance();\
             logger.setLogLevel(DEBUG);\
             char buf[1024] = {0};\
-            snprintf(buf,1024,logFormat, ##_s_VA_ARGS__);\
+            snprintf(buf,1024,logFormat, ##__VA_ARGS__);\
             logger.log(buf);\
         } while (0)
 #else

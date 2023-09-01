@@ -1,0 +1,18 @@
+bug: 
+Acceptor::Acceptor(EventLoop* loop, const InetAddress& addr, bool reuseport)
+    :loop_(loop)
+    , acceptSocket_(createNonBlock())
+    , acceptChannel_(loop,acceptChannel_.fd())  // should be ", acceptChannel_(loop,acceptSocket_.fd()) "
+
+first channel created: Acceptor::acceptChannel_
+
+bug:
+    if(callback_==nullptr) // should be "if(callback_)"
+    {
+        callback_(&loop);
+    }
+
+life cycle of a channel
+1. init with a loop and a fd
+2. set callbacks
+3. enable some functionality

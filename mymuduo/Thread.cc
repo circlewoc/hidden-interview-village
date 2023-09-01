@@ -34,12 +34,19 @@ void Thread::setDefaultName()
     }
 }
 
-void Thread::start()
+void Thread::start()  
 {
     started_ = true;
-    thread_ = std::shared_ptr<std::thread>(new std::thread([&]{
-        func_();
+    sem_t sem; // to get the correct tid
+    sem_init(&sem, false, 0);
+
+    thread_ = std::shared_ptr<std::thread>(new std::thread([&](){
+        tid_ = CurrentThread::tid();
+        sem_post(&sem);
+        func_(); 
     }));
+
+    sem_wait(&sem);
 }
 
 void Thread::join()

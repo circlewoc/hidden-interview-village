@@ -17,7 +17,7 @@ static int createNonBlock()
 Acceptor::Acceptor(EventLoop* loop, const InetAddress& addr, bool reuseport)
     :loop_(loop)
     , acceptSocket_(createNonBlock())
-    , acceptChannel_(loop,acceptChannel_.fd())
+    , acceptChannel_(loop,acceptSocket_.fd())
     , listening_(false)
 {
     acceptSocket_.SetReuseAddr(true);

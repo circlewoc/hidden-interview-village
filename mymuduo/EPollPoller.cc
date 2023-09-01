@@ -28,28 +28,28 @@ void EPollPoller::UpdateChannel(Channel* channel)
 {
     int index = channel->index();
     LOG_INFO("func = %s, fd = %d, event = %d, index = %d\n",__FUNCTION__,channel->fd(),channel->events(), channel->index());
-    if(index==kNew || index==kDeleted)
+    if (index == kNew || index == kDeleted)
     {
-        int fd = channel->fd();
-        if(index==kNew)
+        if (index == kNew)
         {
+            int fd = channel->fd();
             channels_[fd] = channel;
         }
-        else
-        {
 
-        }
+        channel->set_index(kAdded);
+        Update(EPOLL_CTL_ADD, channel);
     }
-    if(index==kAdded)
+    else  // channel已经在poller上注册过了
     {
-        if(channel->IsNoneEvent())
+        int fd = channel->fd();
+        if (channel->IsNoneEvent())
         {
+            Update(EPOLL_CTL_DEL, channel);
             channel->set_index(kDeleted);
-            Update(EPOLL_CTL_DEL,channel);
         }
         else
         {
-            Update(EPOLL_CTL_MOD,channel);
+            Update(EPOLL_CTL_MOD, channel);
         }
     }
 }

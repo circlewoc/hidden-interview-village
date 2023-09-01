@@ -19,7 +19,7 @@ void EventLoopThreadPool::Start(const ThreadInitCallback& cb)
         snprintf(buf,sizeof(buf),"%s%d",name_.c_str(),i);
         EventLoopThread *t = new EventLoopThread(cb,buf);
         threads_.push_back(std::unique_ptr<EventLoopThread>(t));
-        loops_.push_back(t->startloop());
+        loops_.push_back(t->startloop());//bug
 
     }
     if(numThreads_==0)

@@ -23,7 +23,7 @@ EventLoopThread::~EventLoopThread()
 
 EventLoop* EventLoopThread::startloop()
 {
-    thread_.start();
+    thread_.start();//bug
     EventLoop* loop;
     {
         std::unique_lock<std::mutex> lock(mutex_);
@@ -39,7 +39,7 @@ EventLoop* EventLoopThread::startloop()
 void EventLoopThread::ThreadFunc()
 {
     EventLoop loop;
-    if(callback_==nullptr)
+    if(callback_)
     {
         callback_(&loop);
     }
