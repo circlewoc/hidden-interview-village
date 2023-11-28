@@ -1,5 +1,5 @@
 # hidden-interview-village
-本仓库包含了本人的简历上的两个项目
+
 ## SRAFT：分布式kv存储系统
 - 项目概述：该项目借鉴了MIT6.824公开课的课程项目，旨在使用C++实现分布式kv存储系统。
 - 应用技术：使用C++编程语言，涉及多线程、protobuf以及gRPC。
